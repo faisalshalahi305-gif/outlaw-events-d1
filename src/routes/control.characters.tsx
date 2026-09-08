@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BlocksBoard } from "@/components/BlocksBoard";
+import { SectionBoard } from "@/components/SectionBoard";
 
 export const Route = createFileRoute("/control/characters")({
   head: () => ({
@@ -21,12 +21,11 @@ export const Route = createFileRoute("/control/characters")({
     ],
   }),
   component: () => (
-    <BlocksBoard
+    <SectionBoard
       section="characters"
       title="الشخصيات الرئيسية"
-      subtitle="تحرير الصور والنصوص والجداول ثم الضغط على حفظ"
       blockLabel="الشخصية"
-      admin
+      mode="publish"
       backTo="/control"
       backLabel="الرجوع للوحة التحكم"
     />

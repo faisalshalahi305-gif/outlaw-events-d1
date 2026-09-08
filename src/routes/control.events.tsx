@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BlocksBoard } from "@/components/BlocksBoard";
+import { SectionBoard } from "@/components/SectionBoard";
 
 export const Route = createFileRoute("/control/events")({
   head: () => ({
@@ -24,12 +24,11 @@ export const Route = createFileRoute("/control/events")({
     ],
   }),
   component: () => (
-    <BlocksBoard
+    <SectionBoard
       section="events"
       title="احداث اوت لاو الاخيرة"
-      subtitle="تحرير الصور والنصوص والجداول ثم الضغط على حفظ"
       blockLabel="الحدث"
-      admin
+      mode="publish"
       backTo="/control"
       backLabel="الرجوع للوحة التحكم"
     />

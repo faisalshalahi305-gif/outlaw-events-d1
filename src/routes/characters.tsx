@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BlocksBoard } from "@/components/BlocksBoard";
+import { SectionView } from "@/components/SectionView";
 
 export const Route = createFileRoute("/characters")({
   head: () => ({
@@ -20,10 +20,10 @@ export const Route = createFileRoute("/characters")({
     ],
   }),
   component: () => (
-    <BlocksBoard
+    <SectionView
       section="characters"
       title="الشخصيات الرئيسية"
-      subtitle="10 صور و10 نصوص تُحفظ وتظهر لكل الزوار"
+      subtitle="آخر نسخة منشورة من الشخصيات الرئيسية"
       blockLabel="الشخصية"
     />
   ),

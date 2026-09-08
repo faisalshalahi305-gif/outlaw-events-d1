@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { EditRequestBoard } from "@/components/EditRequestBoard";
+import { SectionBoard } from "@/components/SectionBoard";
 
 const LABELS: Record<string, { title: string; blockLabel: string }> = {
   characters: { title: "الشخصيات الرئيسية", blockLabel: "الشخصية" },
@@ -40,11 +40,12 @@ function RevisionEditor() {
   }
 
   return (
-    <EditRequestBoard
+    <SectionBoard
       key={section}
       section={section}
       title={meta.title}
       blockLabel={meta.blockLabel}
+      mode="submit"
     />
   );
 }

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BlocksBoard } from "@/components/BlocksBoard";
+import { SectionView } from "@/components/SectionView";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -20,10 +20,10 @@ export const Route = createFileRoute("/events")({
     ],
   }),
   component: () => (
-    <BlocksBoard
+    <SectionView
       section="events"
       title="احداث اوت لاو الاخيرة"
-      subtitle="صور ونصوص تُحفظ وتظهر لكل الزوار"
+      subtitle="آخر نسخة منشورة من أحداث أوت لاو"
       blockLabel="الحدث"
     />
   ),
