@@ -31,12 +31,14 @@ function createAdminFetch(key: string): typeof fetch {
  */
 export function createGateDatabaseClient() {
   const url = envValue("SUPABASE_URL");
-  const key = envValue("SUPABASE_PUBLISHABLE_KEY");
+  // The gate RPCs are SECURITY DEFINER and executable by service_role only,
+  // so this privileged client must use the service-role key.
+  const key = envValue("SUPABASE_SERVICE_ROLE_KEY");
 
   if (!url || !key) {
     const missing = [
       ...(!url ? ["SUPABASE_URL"] : []),
-      ...(!key ? ["SUPABASE_PUBLISHABLE_KEY"] : []),
+      ...(!key ? ["SUPABASE_SERVICE_ROLE_KEY"] : []),
     ];
     console.error(`[Secret Gate] Missing environment variable(s): ${missing.join(", ")}`);
     throw new Error("gate_environment_missing");
