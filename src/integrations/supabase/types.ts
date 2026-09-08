@@ -183,39 +183,6 @@ export type Database = {
           },
         ]
       }
-      revisions: {
-        Row: {
-          created_at: string
-          id: string
-          items: Json
-          note: string | null
-          reviewed_at: string | null
-          section: string
-          status: string
-          visitor_number: number | null
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          items?: Json
-          note?: string | null
-          reviewed_at?: string | null
-          section: string
-          status?: string
-          visitor_number?: number | null
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          items?: Json
-          note?: string | null
-          reviewed_at?: string | null
-          section?: string
-          status?: string
-          visitor_number?: number | null
-        }
-        Relationships: []
-      }
       site_settings: {
         Row: {
           id: boolean
