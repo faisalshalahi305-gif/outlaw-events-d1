@@ -11,8 +11,10 @@
  * GATE_HASH_SALT              ->  ADMIN_HASH_SALT
  * DB_SERVICE_KEY         ->  SUPABASE_SERVICE_ROLE_KEY
  *
- * The alias WINS when present, so setting it in both Lovable and Vercel makes
- * the two environments byte-identical without deleting the old secrets.
+ * The canonical value wins when present. Lovable injects canonical values for
+ * its connected database, while self-hosted deployments can use the aliases.
+ * This prevents a user-owned alias from accidentally pairing a key from one
+ * project with the managed URL of another project.
  */
 const ALIASES: Record<string, string> = {
   SESSION_SECRET: "GATE_SESSION_SECRET",
@@ -22,14 +24,15 @@ const ALIASES: Record<string, string> = {
 
 export function envValue(canonical: string): string {
   const alias = ALIASES[canonical];
+  const canonicalValue = process.env[canonical];
   const aliasValue = alias ? process.env[alias] : undefined;
-  return (aliasValue && aliasValue.trim()) || process.env[canonical] || "";
+  return (canonicalValue && canonicalValue.trim()) || (aliasValue && aliasValue.trim()) || "";
 }
 
 export function applyEnvAliases(): void {
   for (const canonical of Object.keys(ALIASES)) {
     const value = envValue(canonical);
-    if (value && process.env[canonical] !== value) {
+    if (value && !process.env[canonical]) {
       process.env[canonical] = value;
     }
   }

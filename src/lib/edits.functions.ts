@@ -17,8 +17,8 @@ export type { EditEntry, EditRequest } from "./edits-shared";
 
 
 async function admin() {
-  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  return supabaseAdmin;
+  const { createGateDatabaseClient } = await import("./admin-db.server");
+  return createGateDatabaseClient();
 }
 
 async function signAll(
